@@ -24,7 +24,6 @@ function pingForPlayersMC() {
 	
 	}).catch(err => console.log('Error pinging api.mcsrvstat.us for data:', err))
   
-	if(process.env.MYURL) axios.get(process.env.MYURL);
 }
 
 function pingForPlayersRust() {
@@ -85,7 +84,10 @@ const server = http.createServer((req, res) => {
 });
 
 function keepAlive() {
-	 axios.get(process.env.MYURL);
+	 console.log('Gonna keep alive!');
+	 axios.get(process.env.MYURL).then(res => {
+		 console.log('Kept alive!');
+	}).catch(err => console.log('Error keeping alive...', err))
 }
 
 // Timer to keep heroku bot alive that runs every 20 minutes
