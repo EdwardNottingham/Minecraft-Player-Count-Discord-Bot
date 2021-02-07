@@ -13,7 +13,7 @@ function pingForPlayers() {
 			client.user.setPresence({
 				game: {
 					// Example: "Watching 5 players on server.com"
-					name: `${playerCount} player${playerCount > 1 ? 's' : ''} on ${process.env.MC_SERVER_IP}`,
+					name: `${playerCount} player${playerCount !=1 ? 's' : ''} on ${process.env.SERVERNAME}`,
 					type: 3 // Use activity type 3 which is "Watching"
 				}
 			})
@@ -30,8 +30,8 @@ client.on('ready', () => {
 	console.log('Logged in as', client.user.tag)
 
 	pingForPlayers() // Ping server once on startup
-	// Ping the server and set the new status message every x minutes. (Minimum of 1 minute)
-	setInterval(pingForPlayers, Math.max(1, process.env.MC_PING_FREQUENCY || 1) * 60 * 1000)
+	// Ping the server and set the new status message every x seconds. (Minimum of 1 minute)
+	setInterval(pingForPlayers, Math.max(1, process.env.MC_PING_FREQUENCY || 1) * 1000)
 })
 
 // Login to Discord
