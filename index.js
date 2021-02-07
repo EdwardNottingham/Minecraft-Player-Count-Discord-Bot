@@ -36,3 +36,19 @@ client.on('ready', () => {
 
 // Login to Discord
 client.login(process.env.DISCORD_TOKEN)
+
+// Webserver so that heroku doesn't close
+const http = require('http');
+
+const hostname = '127.0.0.1';
+const port = process.env.PORT;
+
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Eddland ready for duty!');
+});
+
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
