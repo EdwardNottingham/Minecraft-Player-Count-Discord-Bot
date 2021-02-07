@@ -10,7 +10,7 @@ function pingForPlayersMC() {
 		// If we got a valid response
 		if(res.data && res.data.players) {
 			let playerCount = res.data.players.online || 0 // Default to zero
-			client.user.setPresence({
+			clientMC.user.setPresence({
 				game: {
 					// Example: "Watching 5 players on server.com"
 					name: `${playerCount} player${playerCount !=1 ? 's' : ''} on ${process.env.MCSERVERNAME}`,
@@ -34,7 +34,7 @@ function pingForPlayersRust() {
 		// If we got a valid response
 		if(res.data && res.data.players) {
 			let playerCount = res.data.players || 0 // Default to zero
-			client.user.setPresence({
+			clientRUST.user.setPresence({
 				game: {
 					// Example: "Watching 5 players on server.com"
 					name: `${playerCount} player${playerCount !=1 ? 's' : ''} on ${process.env.RUSTSERVERNAME}`,
@@ -59,9 +59,9 @@ if(process.env.MYURL) setInterval(keepAlive, 20 * 60 * 1000);
 
 // Runs when client connects to Discord.
 clientMC.on('ready', () => {
-	console.log('Logged in as', client.user.tag)
+	console.log('Logged in as', clientMC.user.tag)
 
-	pingForPlayers() // Ping server once on startup
+	pingForPlayersMC() // Ping server once on startup
 	// Ping the server and set the new status message every x seconds. (Minimum of 1 second)
 	setInterval(pingForPlayersMC, Math.max(1, process.env.PING_FREQUENCY || 1) * 1000)
 })
@@ -71,9 +71,9 @@ if(process.env.MC_SERVER_IP) clientMC.login(process.env.DISCORD_TOKEN_MC)
 
 // Runs when client connects to Discord.
 clientRUST.on('ready', () => {
-	console.log('Logged in as', client.user.tag)
+	console.log('Logged in as', clientRUST.user.tag)
 
-	pingForPlayers() // Ping server once on startup
+	pingForPlayersRust() // Ping server once on startup
 	// Ping the server and set the new status message every x seconds. (Minimum of 1 second)
 	setInterval(pingForPlayersRust, Math.max(1, process.env.PING_FREQUENCY || 1) * 1000)
 })
