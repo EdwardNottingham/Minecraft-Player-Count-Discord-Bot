@@ -6,7 +6,7 @@ const client = new Discord.Client()
 function pingForPlayers() {
 
 	// Ping API for server data.
-	axios.get(`https://api.mcsrvstat.us/1/${process.env.MC_SERVER_IP}`).then(res => {
+	axios.get(`https://api.mcsrvstat.us/2/${process.env.MC_SERVER_IP}`).then(res => {
 		// If we got a valid response
 		if(res.data && res.data.players) {
 			let playerCount = res.data.players.online || 0 // Default to zero
