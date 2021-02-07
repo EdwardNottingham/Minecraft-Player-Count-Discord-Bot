@@ -2,7 +2,7 @@
 
 This bot will update its status message with the current player count of a minecraft server.
 
-![Example output from the bot.](https://i.imgur.com/AZo7Z9H.png)
+![Example output from the bot.](https://i.imgur.com/JWIZprk.png)
 
 ## How to use
 
