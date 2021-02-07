@@ -92,6 +92,6 @@ function keepAlive() {
 
 // Timer to keep heroku bot alive that runs every 20 minutes
 if(process.env.MYURL) {
-	keepAlive();
+	setTimeout(keepAlive, 3000);
 	setInterval(keepAlive, 20 * 60 * 1000);
 }
