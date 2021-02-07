@@ -32,7 +32,7 @@ client.on('ready', () => {
 	console.log('Logged in as', client.user.tag)
 
 	pingForPlayers() // Ping server once on startup
-	// Ping the server and set the new status message every x seconds. (Minimum of 1 minute)
+	// Ping the server and set the new status message every x seconds. (Minimum of 1 second)
 	setInterval(pingForPlayers, Math.max(1, process.env.MC_PING_FREQUENCY || 1) * 1000)
 })
 
@@ -41,9 +41,7 @@ client.login(process.env.DISCORD_TOKEN)
 
 // Webserver so that heroku doesn't close
 const http = require('http');
-
-const hostname = '127.0.0.1';
-const port = process.env.PORT;
+const port = process.env.PORT||5000;
 
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
