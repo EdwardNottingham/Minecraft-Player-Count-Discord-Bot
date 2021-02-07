@@ -17,7 +17,7 @@ function pingForPlayersMC() {
 					type: 3 // Use activity type 3 which is "Watching"
 				}
 			})
-			console.log('Updated player count to', playerCount)
+			console.log('Updated Minecraft player count to', playerCount)
 		}
 		else
 			console.log('Could not load player count data for minecraft server with ip ', process.env.MC_SERVER)
@@ -41,7 +41,7 @@ function pingForPlayersRust() {
 					type: 3 // Use activity type 3 which is "Watching"
 				}
 			})
-			console.log('Updated player count to', playerCount)
+			console.log('Updated Rust player count to', playerCount)
 		}
 		else
 			console.log('Could not load player count data for rust server with id ', process.env.RUST_SERVER_ID)
@@ -49,13 +49,6 @@ function pingForPlayersRust() {
 	}).catch(err => console.log('Error pinging api.rust-servers.info for data:', err))
   
 }
-
-function keepAlive() {
-	 axios.get(process.env.MYURL);
-}
-
-// Timer to keep heroku bot alive that runs every 20 minutes
-if(process.env.MYURL) setInterval(keepAlive, 20 * 60 * 1000);
 
 // Runs when client connects to Discord.
 clientMC.on('ready', () => {
@@ -90,3 +83,13 @@ const server = http.createServer((req, res) => {
   res.setHeader('Content-Type', 'text/plain');
   res.end('Eddland ready for duty!');
 });
+
+function keepAlive() {
+	 axios.get(process.env.MYURL);
+}
+
+// Timer to keep heroku bot alive that runs every 20 minutes
+if(process.env.MYURL) {
+	keepAlive();
+	setInterval(keepAlive, 20 * 60 * 1000);
+}
