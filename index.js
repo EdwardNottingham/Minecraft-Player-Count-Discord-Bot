@@ -83,6 +83,10 @@ const server = http.createServer((req, res) => {
   res.end('Eddland ready for duty!');
 });
 
+server.listen(port, () => {
+  console.log(`Server running`);
+});
+
 function keepAlive() {
 	 console.log('Gonna keep alive!');
 	 axios.get(process.env.MYURL).then(res => {
