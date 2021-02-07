@@ -23,6 +23,8 @@ function pingForPlayers() {
 			console.log('Could not load player count data for', process.env.MC_SERVER)
 
 	}).catch(err => console.log('Error pinging api.mcsrvstat.us for data:', err))
+
+	if(process.env.MYURL) axios.get(process.env.MYURL);
 }
 
 // Runs when client connects to Discord.
